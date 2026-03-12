@@ -1,0 +1,6 @@
+{
+  "etsy_client_id": "YOUR_ETSY_CLIENT_ID",
+  "etsy_redirect_uri": "http://localhost:8080/callback",
+  "flask_secret_key": "change-this-to-any-random-string",
+  "port": 8080
+}

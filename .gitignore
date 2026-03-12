@@ -1,0 +1,16 @@
+# Local Configuration (CRITICAL - DO NOT COMMIT)
+config.local.json
+
+# Python Artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# OS Generated Files
+.DS_Store
+Thumbs.db

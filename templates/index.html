@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Etsy Bulk Video Uploader</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body data-connected="{{ 1 if connected else 0 }}" data-client-configured="{{ 1 if client_configured else 0 }}">
+  <div class="page-shell">
+    <header class="topbar card">
+      <div>
+        <p class="eyebrow">Local Tool</p>
+        <h1>Etsy Bulk Video Uploader</h1>
+        <p class="subtle">Upload one MP4 across multiple active listings with Etsy Open API v3.</p>
+      </div>
+      <div class="topbar-actions">
+        <button id="connectBtn" class="btn btn-primary" {% if not client_configured %}disabled{% endif %}>{{ 'Reconnect to Etsy' if connected else 'Connect to Etsy' }}</button>
+        {% if connected %}
+          <span class="pill connected">Connected to Etsy</span>
+        {% endif %}
+      </div>
+    </header>
+
+    {% if not client_configured %}
+      <section class="alert card">
+        Missing Etsy client ID. Set <code>ETSY_CLIENT_ID</code> or add <code>etsy_client_id</code> in <code>config.local.json</code>.
+      </section>
+    {% endif %}
+
+    <main class="layout-grid">
+      <section class="card">
+        <h2>1. Select Video</h2>
+        <label class="file-field" for="videoFile">MP4 file</label>
+        <input id="videoFile" type="file" accept="video/mp4">
+        <p class="subtle">Only MP4 is supported by this uploader.</p>
+      </section>
+
+      <section class="card listings-card">
+        <div class="section-head">
+          <h2>2. Choose Active Listings</h2>
+          <button id="refreshListingsBtn" class="btn btn-secondary" {% if not connected %}disabled{% endif %}>Refresh</button>
+        </div>
+
+        <div class="listing-tools">
+          <label class="checkbox-inline" for="selectAllToggle">
+            <input id="selectAllToggle" type="checkbox">
+            Select All
+          </label>
+          <span id="selectionMeta" class="subtle">0 selected</span>
+        </div>
+
+        <div id="listingContainer" class="listing-container">
+          {% if connected %}
+            <p class="placeholder">Loading your active listings...</p>
+          {% else %}
+            <p class="placeholder">Connect to Etsy to load active listings.</p>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3. Bulk Upload</h2>
+        <button id="uploadBtn" class="btn btn-primary" disabled>Upload Video to Selected Listings</button>
+        <p class="subtle">This app waits 2 seconds between each listing upload to reduce rate-limit risk.</p>
+      </section>
+
+      <section class="card">
+        <h2>Status Log</h2>
+        <div id="statusLog" class="status-log" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>
