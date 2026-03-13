@@ -36,11 +36,15 @@ p {
   max-width: 1020px;
   margin: 30px auto;
   padding: 0 16px 28px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .layout-grid {
   display: grid;
   gap: 16px;
+  flex: 1;
 }
 
 .card {
@@ -99,7 +103,7 @@ p {
 
 .btn {
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: 8px;
   height: 38px;
   padding: 0 16px;
   cursor: pointer;
@@ -135,6 +139,27 @@ p {
 
 .btn-secondary:hover {
   border-color: #cbc6bf;
+}
+
+.site-footer {
+  margin-top: 16px;
+  padding: 14px 6px 4px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
 }
 
 .pill {
