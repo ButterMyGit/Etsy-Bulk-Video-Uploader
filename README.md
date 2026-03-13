@@ -39,7 +39,8 @@ You need a local configuration file to securely store your credentials.
     python3 app.py
     ```
 3. Open your web browser and navigate to:
-    ```http://localhost:8080
+    ```
+    http://localhost:8080
     ```
 
 ## Usage Guide
